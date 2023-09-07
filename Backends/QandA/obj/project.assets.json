@@ -8114,11 +8114,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/Rehan/Desktop/Backends/QandA/QandA.csproj",
+      "projectUniqueName": "/Users/Rehan/Documents/GitHub/MBE_ASP.NETandReact_qanda2023/Backends/QandA/QandA.csproj",
       "projectName": "QandA",
-      "projectPath": "/Users/Rehan/Desktop/Backends/QandA/QandA.csproj",
+      "projectPath": "/Users/Rehan/Documents/GitHub/MBE_ASP.NETandReact_qanda2023/Backends/QandA/QandA.csproj",
       "packagesPath": "/Users/Rehan/.nuget/packages/",
-      "outputPath": "/Users/Rehan/Desktop/Backends/QandA/obj/",
+      "outputPath": "/Users/Rehan/Documents/GitHub/MBE_ASP.NETandReact_qanda2023/Backends/QandA/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/Rehan/.nuget/NuGet/NuGet.Config"
