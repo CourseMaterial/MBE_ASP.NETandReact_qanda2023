@@ -22,5 +22,5 @@ jobs:
       version: '7.0.102'
 
   - script: dotnet build --configuration $(buildConfiguration)
-    workingDirectory: 'Backends/QandA'
+    workingDirectory: Backends/QandA
     displayName: 'backend build'
