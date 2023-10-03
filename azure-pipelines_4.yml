@@ -48,7 +48,6 @@ jobs:
       artifactName: 'backend'
     displayName: 'backend publish to pipeline'
 
-- script: npm install
-  workingDirectory: Frontends/frontend
-  displayName: 'frontend install dependencies'
-
+  - script: npm install
+    workingDirectory: Frontends/frontend
+    displayName: 'frontend install dependencies'
