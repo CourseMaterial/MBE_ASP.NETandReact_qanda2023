@@ -60,4 +60,11 @@ jobs:
     workingDirectory: Frontends/frontend
     displayName: 'frontend staging build'
     
- 
+  - task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: Frontends/frontend/build
+    includeRootFolder: true
+    archiveType: zip
+    archiveFile: '$(Build.ArtifactStagingDirectory)/frontend-staging/build.zip'
+    replaceExistingArchive: true
+  displayName: 'frontend staging zip files'
