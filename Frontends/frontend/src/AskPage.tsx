@@ -41,12 +41,14 @@ export const AskPage = () => {
           <FieldContainer>
             <FieldLabel htmlFor="title">Title</FieldLabel>
             <FieldInput
-              {...register('title', { required: true, minLength: 10 })}
+              {...(register('title', {
+                required: true,
+                minLength: 10,
+              }) as unknown as Record<string, any>)}
               id="title"
               name="title"
               type="text"
             />
-
             {errors.title && errors.title.type === 'required' && (
               <FieldError>You must enter the question title</FieldError>
             )}
@@ -57,7 +59,10 @@ export const AskPage = () => {
           <FieldContainer>
             <FieldLabel htmlFor="content">Content</FieldLabel>
             <FieldTextArea
-              {...register('content', { required: true, minLength: 50 })}
+              {...(register('content', {
+                required: true,
+                minLength: 50,
+              }) as unknown as Record<string, any>)}
               id="content"
               name="content"
             />
@@ -84,6 +89,7 @@ export const AskPage = () => {
   );
 };
 export default AskPage;
+
 type FormData = {
   title: string;
   content: string;

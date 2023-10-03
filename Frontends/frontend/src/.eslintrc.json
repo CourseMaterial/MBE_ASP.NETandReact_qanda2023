@@ -4,8 +4,5 @@
         "error", {
                 "endOfLine": "auto"
               }
-        ] },
-        "globals": {
-          "cy": true
-      }
+        ] }
 }

@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import React from 'react';
 import { QuestionList } from './QuestionList';
-import { getUnansweredQuestions, QuestionData } from './QuestionsData';
+import { getUnansweredQuestions } from './QuestionsData';
 import { Page } from './Page';
 import { PageTitle } from './PageTitle';
 import { PrimaryButton } from './Styles';
@@ -13,27 +13,25 @@ import {
   gotUnansweredQuestionsAction,
   AppState,
 } from './Store';
-//import { useAuth } from './Auth';
 import { useAuth0 } from '@auth0/auth0-react';
 
 export const HomePage = () => {
-  const [questions, setQuestions] = React.useState<QuestionData[]>([]);
-  const [questionsLoading, setQuestionsLoading] = React.useState(true);
+  const dispatch = useDispatch();
+  const questions = useSelector(
+    (state: AppState) => state.questions.unanswered,
+  );
+  const questionsLoading = useSelector(
+    (state: AppState) => state.questions.loading,
+  );
 
   const { isAuthenticated } = useAuth0();
   React.useEffect(() => {
-    let cancelled = false;
     const doGetUnansweredQuestions = async () => {
+      dispatch(gettingUnansweredQuestionsAction());
       const unansweredQuestions = await getUnansweredQuestions();
-      if (!cancelled) {
-        setQuestions(unansweredQuestions);
-        setQuestionsLoading(false);
-      }
+      dispatch(gotUnansweredQuestionsAction(unansweredQuestions));
     };
     doGetUnansweredQuestions();
-    return () => {
-      cancelled = true;
-    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

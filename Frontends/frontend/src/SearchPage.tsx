@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import { useSearchParams } from 'react-router-dom';
 import { QuestionList } from './QuestionList';
-import { QuestionData, searchQuestions } from './QuestionsData';
+import { searchQuestions } from './QuestionsData';
 
 import React from 'react';
 import { Page } from './Page';
@@ -15,23 +15,19 @@ import {
 } from './Store';
 
 export const SearchPage = () => {
-  const [searchParams] = useSearchParams();
-  const [questions, setQuestions] = React.useState<QuestionData[]>([]);
+  const dispatch = useDispatch();
+  const questions = useSelector((state: AppState) => state.questions.searched);
 
+  const [searchParams] = useSearchParams();
   const search = searchParams.get('criteria') || '';
 
   React.useEffect(() => {
-    let cancelled = false;
     const doSearch = async (criteria: string) => {
+      dispatch(searchingQuestionsAction());
       const foundResults = await searchQuestions(criteria);
-      if (!cancelled) {
-        setQuestions(foundResults);
-      }
+      dispatch(searchedQuestionsAction(foundResults));
     };
     doSearch(search);
-    return () => {
-      cancelled = true;
-    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 

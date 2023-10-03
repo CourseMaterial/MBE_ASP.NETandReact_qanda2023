@@ -7,7 +7,7 @@ import { QuestionData } from './QuestionsData';
 import { Question } from './Question';
 
 interface Props {
-  data?: QuestionData[];
+  data: QuestionData[];
   renderItem?: (item: QuestionData) => JSX.Element;
 }
 
@@ -24,7 +24,7 @@ export const QuestionList = ({ data, renderItem }: Props) => (
       box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.16);
     `}
   >
-    {data?.map((question) => (
+    {data.map((question) => (
       <li
         key={question.questionId}
         css={css`

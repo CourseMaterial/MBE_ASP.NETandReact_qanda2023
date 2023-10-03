@@ -61,7 +61,7 @@ export const Header = () => {
           text-decoration: none;
         `}
       >
-        Q & A*
+        Q & A
         <span
           css={css`
             margin-left: 5px;
@@ -74,10 +74,10 @@ export const Header = () => {
       </Link>
       <form onSubmit={handleSubmit(submitForm)}>
         <input
-          {...register('search')}
           name="search"
           type="text"
           placeholder="Search..."
+          {...(register('search') as unknown as Record<string, any>)}
           defaultValue={criteria}
           css={css`
             box-sizing: border-box;
