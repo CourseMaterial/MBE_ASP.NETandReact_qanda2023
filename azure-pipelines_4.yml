@@ -51,7 +51,7 @@ jobs:
   - script: npm install
     workingDirectory: Frontends/frontend
     displayName: 'frontend install dependencies'
-    
+
   - script: npm run test:ci
     workingDirectory: Frontends/frontend
     displayName: 'frontend tests'
@@ -59,3 +59,12 @@ jobs:
   - script: npm run build:staging
     workingDirectory: Frontends/frontend
     displayName: 'frontend staging build'
+    
+  - task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: 'Frontends/frontend/build'
+    includeRootFolder: false
+    archiveType: zip
+    archiveFile: '$(Build.ArtifactStagingDirectory)/frontend-staging/build.zip'
+    replaceExistingArchive: true
+  displayName: 'frontend staging zip files'
