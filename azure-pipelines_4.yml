@@ -77,3 +77,9 @@ jobs:
       archiveFile: '$(Build.ArtifactStagingDirectory)/frontend-staging/tests.zip'
       replaceExistingArchive: true
     displayName: 'frontend cypress zip files'  
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: '$(Build.ArtifactStagingDirectory)/frontend-staging'
+      artifactName: 'frontend-staging'
+    displayName: 'frontend staging publish to pipeline'  
