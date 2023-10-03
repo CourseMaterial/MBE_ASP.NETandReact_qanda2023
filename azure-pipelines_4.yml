@@ -76,4 +76,4 @@ jobs:
       archiveType: zip
       archiveFile: '$(Build.ArtifactStagingDirectory)/frontend-staging/tests.zip'
       replaceExistingArchive: true
-   displayName: 'frontend cypress zip files'  
+    displayName: 'frontend cypress zip files'  
