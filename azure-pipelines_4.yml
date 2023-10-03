@@ -63,8 +63,8 @@ jobs:
   - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: 'Frontends/frontend/build'
-    includeRootFolder: false
+    includeRootFolder: true
     archiveType: zip
-    archiveFile: 'Frontends/frontend/frontend-staging/build.zip'
+    archiveFile: './build.zip'
     replaceExistingArchive: true
   displayName: 'frontend staging zip files'
