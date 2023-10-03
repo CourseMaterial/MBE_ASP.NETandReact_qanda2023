@@ -87,3 +87,18 @@ jobs:
   - script: npm run build:production
     workingDirectory: Frontends/frontend
     displayName: 'frontend production build'
+
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: 'Frontends/frontend/build'
+      includeRootFolder: false
+      archiveType: zip
+      archiveFile: '$(Build.ArtifactStagingDirectory)/frontend-production/build.zip'
+      replaceExistingArchive: true
+    displayName: 'frontend production zip files'
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: '$(Build.ArtifactStagingDirectory)/frontend-production'
+      artifactName: 'frontend-production'
+    displayName: 'frontend production publish to pipeline'
