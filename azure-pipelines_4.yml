@@ -82,4 +82,8 @@ jobs:
     inputs:
       pathtoPublish: '$(Build.ArtifactStagingDirectory)/frontend-staging'
       artifactName: 'frontend-staging'
-    displayName: 'frontend staging publish to pipeline'  
+    displayName: 'frontend staging publish to pipeline'
+
+  - script: npm run build:production
+    workingDirectory: Frontends/frontend
+    displayName: 'frontend production build'
