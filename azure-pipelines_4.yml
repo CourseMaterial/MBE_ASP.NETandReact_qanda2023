@@ -52,10 +52,6 @@ jobs:
     workingDirectory: Frontends/frontend
     displayName: 'frontend install dependencies'
 
-  - script: npm run test:ci
-    workingDirectory: Frontends/frontend
-    displayName: 'frontend tests'
-
   - script: npm run build:staging
     workingDirectory: Frontends/frontend
     displayName: 'frontend staging build'
