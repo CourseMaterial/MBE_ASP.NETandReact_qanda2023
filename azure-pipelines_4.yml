@@ -68,3 +68,12 @@ jobs:
       archiveFile: '$(Build.ArtifactStagingDirectory)/frontend-staging/build.zip'
       replaceExistingArchive: true
     displayName: 'frontend staging zip files'
+
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: 'Frontends/frontend/cypress'
+      includeRootFolder: false
+      archiveType: zip
+      archiveFile: '$(Build.ArtifactStagingDirectory)/frontend-staging/tests.zip'
+      replaceExistingArchive: true
+   displayName: 'frontend cypress zip files'  
