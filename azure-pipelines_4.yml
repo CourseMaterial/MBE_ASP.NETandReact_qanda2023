@@ -1,0 +1,110 @@
+# Define the trigger for the pipeline, which specifies when it should run.
+trigger:
+- master
+
+# Specify the agent pool and the VM image to use for running the pipeline.
+pool:
+  vmImage: 'ubuntu-latest'
+
+# Define variables that can be used throughout the pipeline.
+variables:
+  buildConfiguration: 'Release'
+
+# Define the list of jobs to execute as part of the pipeline.
+jobs:
+- job: BuildJob
+  displayName: 'Build Job'
+
+  steps:
+  - task: UseDotNet@2
+    inputs:
+      packageType: 'sdk'
+      version: '7.0.102'
+
+  - script: dotnet build --configuration $(buildConfiguration)
+    workingDirectory: Backends/QandA
+    displayName: 'backend build'
+
+  - script: dotnet test
+    workingDirectory: Backends/QandA
+    displayName: 'backend tests'
+
+  - script: dotnet publish -c $(buildConfiguration) --self-contained true -r win-x86
+    workingDirectory: Backends/QandA
+    displayName: 'backend publish'
+
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: 'Backends/QandA/bin/Release/net7.0/publish'
+      includeRootFolder: false
+      archiveType: zip
+      archiveFile: '$(Build.ArtifactStagingDirectory)/Backends/QandA/$(Build.BuildId).zip'
+      replaceExistingArchive: true
+    displayName: 'backend zip files'
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: 'Backends/QandA'
+      artifactName: 'backend'
+    displayName: 'backend publish to pipeline'
+# Define the trigger for the pipeline, which specifies when it should run.
+trigger:
+- master
+
+# Specify the agent pool and the VM image to use for running the pipeline.
+pool:
+  vmImage: 'ubuntu-latest'
+
+# Define variables that can be used throughout the pipeline.
+variables:
+  buildConfiguration: 'Release'
+
+# Define the list of jobs to execute as part of the pipeline.
+jobs:
+- job: BuildJob
+  displayName: 'Build Job'
+
+  steps:
+  - task: UseDotNet@2
+    inputs:
+      packageType: 'sdk'
+      version: '7.0.102'
+
+  - script: dotnet build --configuration $(buildConfiguration)
+    workingDirectory: Backends/QandA
+    displayName: 'backend build'
+
+  - script: dotnet test
+    workingDirectory: Backends/QandA
+    displayName: 'backend tests'
+
+  - script: dotnet publish -c $(buildConfiguration) --self-contained true -r win-x86
+    workingDirectory: Backends/QandA
+    displayName: 'backend publish'
+
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: 'Backends/QandA/bin/Release/net7.0/publish'
+      includeRootFolder: false
+      archiveType: zip
+      archiveFile: '$(Build.ArtifactStagingDirectory)/Backends/QandA/$(Build.BuildId).zip'
+      replaceExistingArchive: true
+    displayName: 'backend zip files'
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: 'Backends/QandA'
+      artifactName: 'backend'
+    displayName: 'backend publish to pipeline'
+
+- script: npm install
+  workingDirectory: Frontends/frontend
+  displayName: 'frontend install dependencies'
+
+- script: npm run test:ci
+  workingDirectory: Frontends/frontend
+  displayName: 'frontend tests'
+
+- script: npm run build:staging
+  workingDirectory: Frontends/frontend
+  displayName: 'frontend staging build'
