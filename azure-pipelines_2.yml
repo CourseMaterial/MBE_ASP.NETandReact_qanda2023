@@ -10,13 +10,17 @@ pool:
 variables:
   buildConfiguration: 'Release'
 
-# Define the list of steps to execute as part of the pipeline.
-  steps:
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version: '7.0.102'
+# Define the list of jobs to execute as part of the pipeline.
+jobs:
+- job: BuildJob
+  displayName: 'Build Job'
 
-- script: dotnet build --configuration $(buildConfiguration)
-  workingDirectory: Backends/QandA
-  displayName: 'backend build'
+  steps:
+  - task: UseDotNet@2
+    inputs:
+      packageType: 'sdk'
+      version: '7.0.102'
+
+  - script: dotnet build --configuration $(buildConfiguration)
+    workingDirectory: Backends/QandA
+    displayName: 'backend build'
