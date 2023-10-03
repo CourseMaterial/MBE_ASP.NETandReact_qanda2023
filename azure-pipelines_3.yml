@@ -35,15 +35,9 @@ jobs:
     
   - task: ArchiveFiles@2
     inputs:
-      rootFolderOrFile: 'Backends/QandA/bin/Release/net7.0/win-x86/publish'
+      rootFolderOrFile: 'Backends/QandA/bin/Release/net7.0/publish'
       includeRootFolder: false
       archiveType: zip
       archiveFile: '$(Build.ArtifactStagingDirectory)/Backends/QandA/$(Build.BuildId).zip'
       replaceExistingArchive: true
     displayName: 'backend zip files'
-
-  - task: PublishBuildArtifacts@1
-    inputs:
-      pathtoPublish: '$(Build.ArtifactStagingDirectory)/Backends/QandA'
-     artifactName: 'backend'
-    displayName: 'backend publish to pipeline'
