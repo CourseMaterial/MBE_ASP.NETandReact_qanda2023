@@ -44,6 +44,6 @@ jobs:
 
   - task: PublishBuildArtifacts@1
     inputs:
-     pathtoPublish: '$(Build.ArtifactStagingDirectory)/Backends/QandA'
+     pathtoPublish: Backends/QandA
      artifactName: 'backend'
    displayName: 'backend publish to pipeline'
