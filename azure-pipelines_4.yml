@@ -62,7 +62,7 @@ jobs:
     
   - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: 'Frontends/frontend/build'
+    rootFolderOrFile: Frontends/frontend/build
     includeRootFolder: false
     archiveType: zip
     archiveFile: '$(Build.ArtifactStagingDirectory)/frontend-staging/build.zip'
