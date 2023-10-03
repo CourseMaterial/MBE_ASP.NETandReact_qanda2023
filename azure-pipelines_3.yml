@@ -42,8 +42,8 @@ jobs:
       replaceExistingArchive: true
     displayName: 'backend zip files'
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)/Backends/QandA'
-    artifactName: 'backend'
-  displayName: 'backend publish to pipeline'    
+  - task: PublishBuildArtifacts@1
+    inputs:
+     pathtoPublish: '$(Build.ArtifactStagingDirectory)/Backends/QandA'
+     artifactName: 'backend'
+   displayName: 'backend publish to pipeline'    
